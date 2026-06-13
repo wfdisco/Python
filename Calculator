@@ -1,0 +1,40 @@
+# Create functions for addition, subtraction, multiplication and division.
+def add(n1, n2):
+    return n1 + n2
+def subtract(n1, n2):
+    return n1 - n2
+def multiply(n1, n2):
+    return n1 * n2
+def divide(n1, n2):
+    return n1 / n2
+
+# Create a dictionary using the previous functions and their corresponding symbols.
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+}
+
+# Create a calculator function that will take 2 numbers and ask what the user would like to do with them.
+def calculator():
+    should_accumulate = True
+    num1 = float(input("Enter the first number: "))
+    while should_accumulate:
+        for symbol in operations:
+            print(symbol)
+        operation_symbol = input("Enter the operation: ")
+        num2 = float(input("Enter the second number: "))
+        answer = operations[operation_symbol](num1, num2)
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+
+# Asks the user if they would like to continue making calculations. Takes the result of the last calculation and continues from there
+        continue_working = input(f"Continue calculating with {answer}? 'y' to continue 'n' for new calculation: ")
+        if continue_working == "y":
+            num1 = answer
+        else:
+            should_accumulate = False
+            print("\n" * 20)
+            calculator()
+
+calculator()
